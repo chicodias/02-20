@@ -2,12 +2,32 @@
 
 ** 2 Semestre de 2020
 
+** 25/08/2020
 
-*** SCC0223 (terca e quinta 8h)
+*** SCC0223 
 
 Criterio: 2 trabalhos em duplas + exercicios
-* TODO Exercicio 1
+* TODO Exercicio 1 (31/08)
 
 
 *** SCC0652 (terca 13:30)
+* TODO Tarefa 1 (01/09)
 
+*** SME0818 (ter-qui 18h)
+presenca no meets
+
+
+*** SSC0570 (ter 21h qui 19h) 
+nao teve aula
+
+** 26/08/2020
+
+*** SME0800 (sex 19h)
+aula aberta (casos onde usamos prob)
+
+** 27/08/2020
+
+*** SCC0223
+tempo de execução pior casos
+
+*** SME0818

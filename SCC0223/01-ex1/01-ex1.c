@@ -1,18 +1,22 @@
 #include <stdio.h>
+#include <stdlib.h>
+#include <ordena.h>
 
 int* AlocaVet(int n){
-    int vet;
+    int * vet;
     vet = malloc(n * sizeof(int));    
-    return &vet;
+    return vet;
 }
 
-void LiberaVet(int *v){
-    free(v);
+void LiberaVet(int *v, int n){
+    for (int i = 0; i < n; i++)    
+        free(v[i]);
 }
+
 
 int main(){
     
-    int nReg, nBusca, tBusca, *vet;
+    int nReg, nBusca, tipoBusca, *vet;
     int i = 0;
 
     printf("Digite Número de registros: ");
@@ -27,9 +31,9 @@ int main(){
         scanf("%d", &vet[i]);
 
     printf("Digite Tipo de busca \n 1- Sequencial 2- Binaria Iterativa 3- Binaria Recursiva: ");
-    scanf("%d", &tBusca);
+    scanf("%d", &tipoBusca);
 
-    switch(tBusca){
+    switch(tipoBusca){
         case 1:
         printf("Busca Sequencial");
             // BuscaSequencial();
@@ -48,23 +52,4 @@ int main(){
 
     LiberaVet(vet);
     return 0;
-}
-
-
-int *BuscaSequencial(int *v, int x){
-    int pos = 0;
-
-    return &pos;
-}
-
-int BuscaBinariaIterativa(int *v, int x){
-    int pos = 0;
-    return pos;
-}
-
-
-int BuscaBinariaRecursiva(int *v, int x){
-    
-    //BuscaBinariaRecursiva()
-    return 2;
 }
