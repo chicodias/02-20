@@ -31,3 +31,4 @@ aula aberta (casos onde usamos prob)
 tempo de execução pior casos
 
 *** SME0818
+* TODO Lista 1

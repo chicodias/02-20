@@ -10,8 +10,10 @@ Universidade de São Paulo
 
 ### SCC0223 Estruturas de Dados 1
 - Aula: ter-qui 8h
-- Monitoria: sextas 15-17h
 - Link: https://meet.google.com/mfn-mndy-fju
+- Monitoria: sextas 15-17h
+- Atendimento: https://meet.google.com/gqq-waps-mha
+
 
 ### SCC0652 Visualizacao Computacional
 - Aula: (terca 13:30)
@@ -29,3 +31,5 @@ SSC0570 Empreendedorismo
 - Aula: Sextas 19h
 - Monitoria: 18h às 19h, às terças-feiras e quintas-feiras
 - Link: https://meet.google.com/smn-xwwr-xiv
+- Atendimento: https://meet.google.com/ofp-emvn-hsb
+  

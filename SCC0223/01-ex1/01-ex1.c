@@ -1,6 +1,6 @@
 #include <stdio.h>
 #include <stdlib.h>
-#include <ordena.h>
+#include "buscas.h"
 
 int* AlocaVet(int n){
     int * vet;
@@ -8,16 +8,15 @@ int* AlocaVet(int n){
     return vet;
 }
 
-void LiberaVet(int *v, int n){
-    for (int i = 0; i < n; i++)    
-        free(v[i]);
+void LiberaVet(int *v){
+     free(v);
 }
 
 
 int main(){
     
     int nReg, nBusca, tipoBusca, *vet;
-    int i = 0;
+    int i = 0, x = 0, pos = 0;
 
     printf("Digite Número de registros: ");
     scanf("%d", &nReg);
@@ -30,24 +29,34 @@ int main(){
     for (i = 0; i < nReg; i++)
         scanf("%d", &vet[i]);
 
+    for (i = 0; i < nBusca; i++)
+    {
     printf("Digite Tipo de busca \n 1- Sequencial 2- Binaria Iterativa 3- Binaria Recursiva: ");
     scanf("%d", &tipoBusca);
 
     switch(tipoBusca){
         case 1:
-        printf("Busca Sequencial");
-            // BuscaSequencial();
+            printf("Busca Sequencial. Digite a busca: ");
+            scanf("%d", &x);
+            pos = buscaSequencial(x,nReg,vet);
+            printf("%d",pos);
             break;
         case 2: 
-                printf("Busca Bin It");
-            // BuscaBinariaIterativa();
+            printf("Busca Bin It");
+            scanf("%d", &x);
+            pos = buscaBinariaIter(x,nReg,vet);
+            printf("%d",pos);
             break;
         case 3:
             printf("Busca Bin Recurs");
-            // BuscaBinariaRecursiva();
+            scanf("%d", &x);
+            pos = buscaBinariaRecur(x,nReg,vet);
+            printf("%d",pos);
             break;
         default:
-            printf ("Tipo de busca invalido\n");
+            printf ("Tipo de busca invalido\n");    
+    }
+        
     }
 
     LiberaVet(vet);
