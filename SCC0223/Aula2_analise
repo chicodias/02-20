@@ -1,0 +1,15 @@
+# Análise do algoritmo Bubble Sort
+
+## Melhor caso
+
+    Quando o vetor já está praticamente ordenado.
+    Se o vetor já estiver ordenado, a complexidade é na ordem de n/2 comparações 
+
+    O(n)
+
+## Pior caso
+
+    Quando os maiores elementos estão nas posições iniciais e os menores nas posições finais do vetor a ser ordenado
+
+    Quando ele troca todo mundo de lugar n
+    O(n^2)

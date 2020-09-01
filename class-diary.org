@@ -7,11 +7,11 @@
 *** SCC0223 
 
 Criterio: 2 trabalhos em duplas + exercicios
-* TODO Exercicio 1 (31/08)
+* DONE Exercicio 1 (31/08)
 
 
 *** SCC0652 (terca 13:30)
-* TODO Tarefa 1 (01/09)
+* DONE Tarefa 1 (01/09)
 
 *** SME0818 (ter-qui 18h)
 presenca no meets
@@ -32,3 +32,12 @@ tempo de execução pior casos
 
 *** SME0818
 * TODO Lista 1
+
+** 01/09/2020
+
+*** SCC0223
+Analise de algoritmos
+
+
+*** SCC0570
+* TODO Tarefa 2 (11/09)
