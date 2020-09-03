@@ -41,3 +41,13 @@ Analise de algoritmos
 
 *** SCC0570
 * TODO Tarefa 2 (11/09)
+
+** 02/09/2020
+
+*** SME0800
+* DONE Questionario 1
+
+** 03/09/2020
+
+*** SCC0223
+* TODO Exercicio 2 (07/09)
