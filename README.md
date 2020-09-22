@@ -20,13 +20,6 @@ Universidade de São Paulo
 - Monitoria:
 - Link: https://meet.google.com/mki-teqf-ghu
 
-### SME0818 Inferencia
-- Aula: ter-qui 18h
-- Monitoria:
-- Link: https://meet.google.com/lookup/crsifhdfwj
-
-SSC0570 Empreendedorismo
-
 ### SME0800 Probabilidade I
 - Aula: Sextas 19h
 - Monitoria: 18h às 19h, às terças-feiras e quintas-feiras

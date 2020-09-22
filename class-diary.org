@@ -31,16 +31,15 @@ aula aberta (casos onde usamos prob)
 tempo de execução pior casos
 
 *** SME0818
-* TODO Lista 1
+* DONE Lista 1
 
 ** 01/09/2020
 
 *** SCC0223
 Analise de algoritmos
 
-
 *** SCC0570
-* TODO Tarefa 2 (11/09)
+* DONE Tarefa 2 (11/09)
 
 ** 02/09/2020
 
@@ -50,4 +49,35 @@ Analise de algoritmos
 ** 03/09/2020
 
 *** SCC0223
-* TODO Exercicio 2 (07/09)
+* DONE Exercicio 2 (07/09)
+
+** 08/09/2020
+
+*** SCC0223
+Estruturas de dados
+
+*** SCC0570
+Tipos de visualização
+
+** 10/09/2020
+
+*** SME0800
+* DONE Questionario 2
+
+** 15/09/2020
+
+*** SCC0223
+* TODO Exercicio 3
+
+*** SCC0570
+* TODO Trabalho 1
+
+** 16/09/2020
+
+*** SME0800
+* DONE Questionario 3
+
+** 17/09/2020
+
+*** SCC0223
+Aula de exercicios
