@@ -1,11 +1,5 @@
-all: lista.o main.o
-	gcc -std=c99 -Wall lista.o main.o -o sacolas
-
-lista.o:
-	gcc -c -std=c99 -Wall lista.c
-
-main.o:
-	gcc -c -std=c99 -Wall main.c
-
+all:
+	gcc -std=c99 -Wall lista.c main.c -o ex3
+	
 run:
-	./sacolas;
+	./ex3

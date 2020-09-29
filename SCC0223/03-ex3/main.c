@@ -1,56 +1,77 @@
 /* 
  * File:   main.c
- * Author: Eliane Gniech Karasawa
+ * Author: Francisco Rosa Dias de Miranda
  */
 
 #include <stdio.h>
 #include <stdlib.h>
 #include "lista.h"
-#include "lista.c"
 
 int main()
 {
-    int opn, nins, nrem, nbusc, chave, pos, i = 0;
+    /* opn = opção selecionada pelo usuario
+        nops = numero de operaçoes requisitadas
+        pos do elemento a ser inserido e chave a ser buscada */
+    int opn, nops, chave, pos, i = 0;
     ITEM mov;
     LISTA *LIS = NULL;
 
     while (1)
     {
+        //printf("Escolha a operacao:\n");
         scanf("%d", &opn);
         switch (opn)
         {
         case 1:
-            LIS = lista_criar();
+
+        // não criar uma lista sem antes apagar uma já existente, perdendo acesso a anterior
+            if(LIS == NULL)
+                LIS = lista_criar();
+            else
+            {
+                lista_apagar(&LIS);
+                LIS = lista_criar();
+            }
+            
             break;
 
         case 2:
-            lista_apagar(LIS);
+            printf("%d\n", lista_apagar(&LIS));
             break;
 
         case 3:
-            scanf("%d", &nins);
-            for(int i = 0; i < nins; ++i)
+            //printf("Numero de Insercoes:\n");
+            scanf("%d", &nops);
+            for(int i = 0; i < nops; ++i)
             {
                 scanf("%d %s %d",&mov.chave, mov.titulo, &pos);
-                printf("%d", lista_inserir_pos(LIS, mov, pos));
+
+                // se posicao for invalida, insere no inicio
+                /* if (pos > lista_tamanho(LIS))
+                    printf("%d\n", lista_inserir_pos(LIS, mov, 1));
+                else    
+                 */    printf("%d\n", lista_inserir_pos(LIS, mov, pos));
             }
             break;
 
         case 4:
-            scanf("%d", &nrem);
-            for(i = 0; i < nrem; ++i)
+            //printf("Numero de remocoes:\n");
+            scanf("%d", &nops);
+            for(i = 0; i < nops; ++i)
             {
+                
                 scanf("%d",&chave);
-                lista_remover(LIS, chave);
+                printf("%d\n",lista_remover(LIS, chave));
             }
             break;
 
         case 5:
-            scanf("%d", &nbusc);
-            for(i = 0; i < nbusc; ++i)
+            //printf("Numero de buscas:\n");
+            scanf("%d", &nops);
+            for(i = 0; i < nops; ++i)
             {
                 scanf("%d",&chave);
-                lista_buscar(LIS, chave);
+                printf("%d\n",lista_buscar(LIS, chave));
             }
             break;
 
@@ -71,12 +92,13 @@ int main()
             break;
 
         case 0:
-            lista_apagar(LIS);
+            lista_apagar(&LIS);
             return 0;
             break;
 
         default:
-            printf("Opção inválida.\n");
+            return 1;
             break;
         }
     }
+}
