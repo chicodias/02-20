@@ -1,0 +1,46 @@
+<?xml version='1.0' encoding='utf-8'?>
+<scheme version="2.0" title="" description="">
+	<nodes>
+		<node id="0" name="Corpus" qualified_name="orangecontrib.text.widgets.owcorpus.OWCorpus" project_name="Orange3-Text" version="" title="Corpus" position="(161.0, 175.0)" />
+		<node id="1" name="Select Rows" qualified_name="Orange.widgets.data.owselectrows.OWSelectRows" project_name="Orange3" version="" title="Select Rows" position="(372.0, 174.0)" />
+	</nodes>
+	<links>
+		<link id="0" source_node_id="0" sink_node_id="1" source_channel="Corpus" sink_channel="Data" enabled="true" />
+	</links>
+	<annotations />
+	<thumbnail />
+	<node_properties>
+		<properties node_id="0" format="pickle">gASV0AMAAAAAAAB9lCiMEmNvbnRyb2xBcmVhVmlzaWJsZZSIjAxyZWNlbnRfZmlsZXOUXZQojGUv
+aG9tZS9jaGljby9vcmFuZ2UzdmVudi9saWIvcHl0aG9uMy44L3NpdGUtcGFja2FnZXMvb3Jhbmdl
+Y29udHJpYi90ZXh0L2RhdGFzZXRzLzIwbmV3c2dyb3Vwcy10ZXN0LnRhYpSMGGdyaW1tLXRhbGVz
+LXNlbGVjdGVkLnRhYpSMEWJvb2stZXhjZXJwdHMudGFilIwYZWxlY3Rpb24tdHdlZXRzLTIwMTYu
+dGFilIwXZnJpZW5kcy10cmFuc2NyaXB0cy50YWKUjAxhbmRlcnNlbi50YWKUZYwTc2F2ZWRXaWRn
+ZXRHZW9tZXRyeZRDQgHZ0MsAAwAAAAABuwAAADsAAAOGAAAB1wAAAbsAAABgAAADhgAAAdcAAAAA
+AAAAAAVWAAABuwAAAGAAAAOGAAAB15SMC19fdmVyc2lvbl9flEsBjBBjb250ZXh0X3NldHRpbmdz
+lF2UKIwVb3Jhbmdld2lkZ2V0LnNldHRpbmdzlIwHQ29udGV4dJSTlCmBlH2UKIwGdmFsdWVzlH2U
+KIwOdGl0bGVfdmFyaWFibGWUTkr+////hpSMCnVzZWRfYXR0cnOUXZSMBFRleHSUS2eGlGFK/f//
+/4aUaAxLAXWMCmF0dHJpYnV0ZXOUfZSMCENhdGVnb3J5lEsBc4wFbWV0YXOUfZRoGksDc3ViaBEp
+gZR9lChoFH2UKGgWTkr+////hpRoGF2UjAdDb250ZW50lEtnhpRhSv3///+GlGgMSwF1aB19lIwJ
+QVRVIFRvcGljlEsBc2ggfZQojAVUaXRsZZRLA4wIQWJzdHJhY3SUSwNoJ0sDjA1BVFUgTnVtZXJp
+Y2FslEsDjAhBVFUgVHlwZZRLAXV1YmgRKYGUfZQoaBR9lChoFk5K/v///4aUaBhdlIwHQ29udGVu
+dJRLZ4aUYUr9////hpRoDEsBdWgdfZSMCUFUVSBUb3BpY5RLAXNoIH2UKIwFVGl0bGWUSwOMCEFi
+c3RyYWN0lEsDaDZLA4wNQVRVIE51bWVyaWNhbJRLA4wIQVRVIFR5cGWUSwF1dWJoESmBlH2UKGgU
+fZQoaBZOSv7///+GlGgYXZSMB0NvbnRlbnSUS2eGlGFK/f///4aUaAxLAXVoHX2UjAlBVFUgVG9w
+aWOUSwFzaCB9lCiMBVRpdGxllEsDjAhBYnN0cmFjdJRLA2hFSwOMDUFUVSBOdW1lcmljYWyUSwOM
+CEFUVSBUeXBllEsBdXViZXUu
+</properties>
+		<properties node_id="1" format="pickle">gASV4QEAAAAAAAB9lCiMC2F1dG9fY29tbWl0lIiMEmNvbnRyb2xBcmVhVmlzaWJsZZSIjBBwdXJn
+ZV9hdHRyaWJ1dGVzlImMDXB1cmdlX2NsYXNzZXOUiYwTc2F2ZWRXaWRnZXRHZW9tZXRyeZRDQgHZ
+0MsAAwAAAAAAAAAAABgAAAVVAAAC/wAAAAAAAAA9AAAFVQAAAv8AAAAAAgAAAAVWAAAAAAAAAD0A
+AAVVAAAC/5SMEHVwZGF0ZV9vbl9jaGFuZ2WUiIwLX192ZXJzaW9uX1+USwKMEGNvbnRleHRfc2V0
+dGluZ3OUXZSMFW9yYW5nZXdpZGdldC5zZXR0aW5nc5SMB0NvbnRleHSUk5QpgZR9lCiMBnZhbHVl
+c5R9lCiMCmNvbmRpdGlvbnOUXZQoKIwIQ2F0ZWdvcnmUSwFLAF2UjBJ0YWxrLnBvbGl0aWNzLmd1
+bnOUYXSUKGgUSwFLAF2UjBhjb21wLnN5cy5pYm0ucGMuaGFyZHdhcmWUYXSUKGgUSwFLAF2UjAlz
+Y2kuc3BhY2WUYXSUKGgUSwFLAF2UjA9yZWMubW90b3JjeWNsZXOUYXSUZWgISwJ1jAphdHRyaWJ1
+dGVzlH2UaBRLAXOMBW1ldGFzlH2UjARUZXh0lEsDc3ViYXUu
+</properties>
+	</node_properties>
+	<session_state>
+		<window_groups />
+	</session_state>
+</scheme>
