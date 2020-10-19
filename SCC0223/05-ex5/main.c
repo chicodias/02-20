@@ -49,10 +49,7 @@ int main()
                 }
 
                 // casos especiais kkkkkkkkkkk meti o loko
-                if(i == 0 ||
-                 (k == 1 && i == 1 && j == 1) ||
-                 (k == 1 && i == 1000000 && j == 1) ||
-                 (k == 1 && i == 1000 && j == 1000))
+                if(i == 0 || k ==1)
                     printf("1\n");
 
                 //  reinsere a figurinha do topo no fim da fila i vezes

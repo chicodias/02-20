@@ -1,5 +1,0 @@
-** Coisas a fazer 20-02
-
-* DONE ESTR Exercício 5 (8/10)
-* TODO VISC Tarefa 3 (09/10 23:55)
-* TODO PROB Questionário 5 (14/10 23:55)
