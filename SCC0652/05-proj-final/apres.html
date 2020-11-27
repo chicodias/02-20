@@ -1,0 +1,270 @@
+<!DOCTYPE html>
+<html lang="" xml:lang="">
+  <head>
+    <title>Visualização da rede de personagens utilizando o NER</title>
+    <meta charset="utf-8" />
+    <meta name="author" content="Grupo 14" />
+    <link href="libs/remark-css-0.0.1/default.css" rel="stylesheet" />
+    <link href="libs/remark-css-0.0.1/default-fonts.css" rel="stylesheet" />
+  </head>
+  <body>
+    <textarea id="source">
+class: center, middle, inverse, title-slide
+
+# Visualização da rede de personagens utilizando o NER
+## SCC0652 - Projeto Final
+### Grupo 14
+### ICMC - USP
+### Dezembro 2020
+
+---
+
+
+
+background-image: url("https://static2.srcdn.com/wordpress/wp-content/uploads/2019/09/Gandalf-Magic.jpg?q=50&amp;fit=crop&amp;w=960&amp;h=500")
+background-position: 10% 10%
+class: center, bottom, inverse
+
+### "I am looking for someone to share in an adventure that I am arranging, and it’s very difficult to find anyone!"
+
+---
+class: inverse
+# **Parte 0**: preliminares
+
+# **Parte 1**: pré-processamento
+
+### - Filtragem do *corpus* textual
+
+# **Parte 2**: modelagem
+
+### - Named Entity Recognition (NER)
+### - Network graph
+
+# **Parte 3**: criação de um dashboard interativo
+
+### - Jupyter + plot_ly + voilà
+
+
+---
+class: inverse, center, middle
+
+# **Parte 0**: preliminares
+---
+
+## Objetivo
+
+Nesta atividade, nosso objetivo foi utilizar os conhecimentos adquiridos ao longo da disciplina SCC0652 para **gerar um dashboard de visualização interativa** para nosso *corpus* textual.
+
+--
+
+## Conjunto de dados
+
+Nosso *corpus* consiste em três arquivos `.txt` retirados da plataforma *Kaggle*, cada um contendo o texto de um volume da trilogia *The Lord of the Rings*.
+
+--
+
+## Implementação
+
+Utilizamos as funcionalidades do **Jupyter Notebook** para implementar, em linguagem **Python**, nossa aplicação.
+
+
+---
+class: inverse, center, middle
+
+# **Parte 1**: pré-processamento
+
+---
+
+## Leitura:
+
+- Uma coleção de documentos é definida,
+
+- Cada documento pertencente a essa coleção terá seu conteúdo carregado na memória,
+
+- Por questão de limitação de processamento, enviaremos uma frase por vez ao classificador, ao invés do livro completo de uma só vez.
+
+
+---
+
+## Extração e limpeza dos termos:
+
+- **Limpeza**: remoção de uma lista de termos não representativos para o documento. Em nosso caso, foram removidas todas as palavras comuns da língua inglesa presentes no arquivo `common_words.txt`. 
+
+
+
+![](prep.jpeg)
+
+---
+## Extração e limpeza dos termos:
+
+- **Tokenização**: utilizada para decompor o documento em cada de seus termos de forma que possa ser lido pelo computador. Neste trabalho, utilizamos como delimitadores o espaço em branco entre os termos.
+
+
+---
+
+## Contagem dos termos:
+
+Após de extrair os termos representativos de cada documento, o número de ocorrências de cada palavra no documento é calculado. Depois de concluída a contagem é criada uma lista com duas colunas: termo e quantidade de ocorrência.
+
+Neste trabalho, utilizaremos o método de contagem mais simples, sem definir peso aos termos, que seria o caso se utilizássemos algo como TF-IDF ou Bag of Words.
+
+
+|names   | freq|
+|:-------|----:|
+|frodo   | 1987|
+|sam     | 1289|
+|gandalf | 1121|
+|aragorn |  720|
+|pippin  |  685|
+|merry   |  597|
+---
+class: center,middle
+# Pipeline de pré-processamento adotado
+![](pipeline.jpg)
+
+---
+class: inverse, center, middle
+
+# **Parte 2**: modelagem
+
+
+---
+
+background-image: url("https://static2.srcdn.com/wordpress/wp-content/uploads/2019/05/Bilbo-and-Gandalf.jpg?q=50&amp;fit=crop&amp;w=740&amp;h=370")
+class: center, bottom, inverse
+
+### "The world is not in your books and maps. It is out there."
+
+---
+# Referências
+
+---
+class: center, middle, inverse
+# Obrigado!
+
+#### Marcos, Luis e Francisco
+
+---
+    </textarea>
+<style data-target="print-only">@media screen {.remark-slide-container{display:block;}.remark-slide-scaler{box-shadow:none;}}</style>
+<script src="https://remarkjs.com/downloads/remark-latest.min.js"></script>
+<script>var slideshow = remark.create({
+"highlightStyle": "github",
+"highlightLines": true,
+"countIncrementalSlides": false
+});
+if (window.HTMLWidgets) slideshow.on('afterShowSlide', function (slide) {
+  window.dispatchEvent(new Event('resize'));
+});
+(function(d) {
+  var s = d.createElement("style"), r = d.querySelector(".remark-slide-scaler");
+  if (!r) return;
+  s.type = "text/css"; s.innerHTML = "@page {size: " + r.style.width + " " + r.style.height +"; }";
+  d.head.appendChild(s);
+})(document);
+
+(function(d) {
+  var el = d.getElementsByClassName("remark-slides-area");
+  if (!el) return;
+  var slide, slides = slideshow.getSlides(), els = el[0].children;
+  for (var i = 1; i < slides.length; i++) {
+    slide = slides[i];
+    if (slide.properties.continued === "true" || slide.properties.count === "false") {
+      els[i - 1].className += ' has-continuation';
+    }
+  }
+  var s = d.createElement("style");
+  s.type = "text/css"; s.innerHTML = "@media print { .has-continuation { display: none; } }";
+  d.head.appendChild(s);
+})(document);
+// delete the temporary CSS (for displaying all slides initially) when the user
+// starts to view slides
+(function() {
+  var deleted = false;
+  slideshow.on('beforeShowSlide', function(slide) {
+    if (deleted) return;
+    var sheets = document.styleSheets, node;
+    for (var i = 0; i < sheets.length; i++) {
+      node = sheets[i].ownerNode;
+      if (node.dataset["target"] !== "print-only") continue;
+      node.parentNode.removeChild(node);
+    }
+    deleted = true;
+  });
+})();
+(function() {
+  "use strict"
+  // Replace <script> tags in slides area to make them executable
+  var scripts = document.querySelectorAll(
+    '.remark-slides-area .remark-slide-container script'
+  );
+  if (!scripts.length) return;
+  for (var i = 0; i < scripts.length; i++) {
+    var s = document.createElement('script');
+    var code = document.createTextNode(scripts[i].textContent);
+    s.appendChild(code);
+    var scriptAttrs = scripts[i].attributes;
+    for (var j = 0; j < scriptAttrs.length; j++) {
+      s.setAttribute(scriptAttrs[j].name, scriptAttrs[j].value);
+    }
+    scripts[i].parentElement.replaceChild(s, scripts[i]);
+  }
+})();
+(function() {
+  var links = document.getElementsByTagName('a');
+  for (var i = 0; i < links.length; i++) {
+    if (/^(https?:)?\/\//.test(links[i].getAttribute('href'))) {
+      links[i].target = '_blank';
+    }
+  }
+})();
+// adds .remark-code-has-line-highlighted class to <pre> parent elements
+// of code chunks containing highlighted lines with class .remark-code-line-highlighted
+(function(d) {
+  const hlines = d.querySelectorAll('.remark-code-line-highlighted');
+  const preParents = [];
+  const findPreParent = function(line, p = 0) {
+    if (p > 1) return null; // traverse up no further than grandparent
+    const el = line.parentElement;
+    return el.tagName === "PRE" ? el : findPreParent(el, ++p);
+  };
+
+  for (let line of hlines) {
+    let pre = findPreParent(line);
+    if (pre && !preParents.includes(pre)) preParents.push(pre);
+  }
+  preParents.forEach(p => p.classList.add("remark-code-has-line-highlighted"));
+})(document);</script>
+
+<script>
+slideshow._releaseMath = function(el) {
+  var i, text, code, codes = el.getElementsByTagName('code');
+  for (i = 0; i < codes.length;) {
+    code = codes[i];
+    if (code.parentNode.tagName !== 'PRE' && code.childElementCount === 0) {
+      text = code.textContent;
+      if (/^\\\((.|\s)+\\\)$/.test(text) || /^\\\[(.|\s)+\\\]$/.test(text) ||
+          /^\$\$(.|\s)+\$\$$/.test(text) ||
+          /^\\begin\{([^}]+)\}(.|\s)+\\end\{[^}]+\}$/.test(text)) {
+        code.outerHTML = code.innerHTML;  // remove <code></code>
+        continue;
+      }
+    }
+    i++;
+  }
+};
+slideshow._releaseMath(document);
+</script>
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+(function () {
+  var script = document.createElement('script');
+  script.type = 'text/javascript';
+  script.src  = 'https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-MML-AM_CHTML';
+  if (location.protocol !== 'file:' && /^https?:/.test(script.src))
+    script.src  = script.src.replace(/^https?:/, '');
+  document.getElementsByTagName('head')[0].appendChild(script);
+})();
+</script>
+  </body>
+</html>
