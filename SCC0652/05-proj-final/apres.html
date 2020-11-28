@@ -28,28 +28,6 @@ class: center, bottom, inverse
 ### "I am looking for someone to share in an adventure that I am arranging, and it’s very difficult to find anyone!"
 
 ---
-class: inverse
-# **Parte 0**: preliminares
-
-# **Parte 1**: pré-processamento
-
-### - Filtragem do *corpus* textual
-
-# **Parte 2**: modelagem
-
-### - Named Entity Recognition (NER)
-### - Network graph
-
-# **Parte 3**: criação de um dashboard interativo
-
-### - Jupyter + plot_ly + voilà
-
-
----
-class: inverse, center, middle
-
-# **Parte 0**: preliminares
----
 
 ## Objetivo
 
@@ -67,6 +45,25 @@ Nosso *corpus* consiste em três arquivos `.txt` retirados da plataforma *Kaggle
 
 Utilizamos as funcionalidades do **Jupyter Notebook** para implementar, em linguagem **Python**, nossa aplicação.
 
+---
+class: inverse
+
+# **Parte 1**: pré-processamento
+
+### - Filtragem do *corpus* textual
+
+--
+
+# **Parte 2**: modelagem
+
+### - Named Entity Recognition (NER)
+### - Network graph
+
+--
+
+# **Parte 3**: criação de um dashboard interativo
+
+### - Jupyter + plot_ly + voilà
 
 ---
 class: inverse, center, middle
@@ -74,6 +71,7 @@ class: inverse, center, middle
 # **Parte 1**: pré-processamento
 
 ---
+![](ring.jpg)
 
 ## Leitura:
 
@@ -84,13 +82,14 @@ class: inverse, center, middle
 - Por questão de limitação de processamento, enviaremos uma frase por vez ao classificador, ao invés do livro completo de uma só vez.
 
 
+
 ---
 
 ## Extração e limpeza dos termos:
 
 - **Limpeza**: remoção de uma lista de termos não representativos para o documento. Em nosso caso, foram removidas todas as palavras comuns da língua inglesa presentes no arquivo `common_words.txt`. 
 
-
+--
 
 ![](prep.jpeg)
 
@@ -99,24 +98,19 @@ class: inverse, center, middle
 
 - **Tokenização**: utilizada para decompor o documento em cada de seus termos de forma que possa ser lido pelo computador. Neste trabalho, utilizamos como delimitadores o espaço em branco entre os termos.
 
+--
 
----
+- **Contagem dos termos**: Após extrair os termos representativos de cada documento, o número de ocorrências de cada palavra no documento é calculado.
 
-## Contagem dos termos:
-
-Após de extrair os termos representativos de cada documento, o número de ocorrências de cada palavra no documento é calculado. Depois de concluída a contagem é criada uma lista com duas colunas: termo e quantidade de ocorrência.
-
-Neste trabalho, utilizaremos o método de contagem mais simples, sem definir peso aos termos, que seria o caso se utilizássemos algo como TF-IDF ou Bag of Words.
+--
 
 
-|names   | freq|
-|:-------|----:|
-|frodo   | 1987|
-|sam     | 1289|
-|gandalf | 1121|
-|aragorn |  720|
-|pippin  |  685|
-|merry   |  597|
+|entidade | token| frequencia|
+|:--------|-----:|----------:|
+|frodo    |    45|       1987|
+|sam      |    24|       1289|
+|gandalf  |    16|       1121|
+|aragorn  |    60|        720|
 ---
 class: center,middle
 # Pipeline de pré-processamento adotado
@@ -126,25 +120,138 @@ class: center,middle
 class: inverse, center, middle
 
 # **Parte 2**: modelagem
-
-
 ---
 
-background-image: url("https://static2.srcdn.com/wordpress/wp-content/uploads/2019/05/Bilbo-and-Gandalf.jpg?q=50&amp;fit=crop&amp;w=740&amp;h=370")
-class: center, bottom, inverse
+## Reconhecimento de Entidade Mencionada (NER)
+--
 
-### "The world is not in your books and maps. It is out there."
+Sem nenhum conhecimento prévio dos romances, o **modelo de reconhecimento de entidade mencionada** (Named-entity recognition ou NER) encontrará os personagens que fazem parte deles.
+
+Neste projeto, utilizamos o classificador pré treinado `Spacy NER`.
+
+--
+
+![](ner.png)
+---
+## Reconhecimento de Entidade Mencionada (NER)
+
+--
+
+- Para cada frase, identificamos as entidades nela mencionadas.
+
+- Se duas entidades estão na mesma frase, contabilizamos a **ocorrência**.
+
+--
+
+![](ner2.png)
+
+---
+## Reconhecimento de Entidade Mencionada (NER)
+### Matriz de Co-ocorrência
+
+--
+
+- Duas entidades são **co-ocorrentes** se *ocorrem* na mesma sentença.
+
+- A co-ocorrência é **mutualmente iterativa**. Dessa forma, é calculada como:
+
+--
+
+`$$X_{coocor} = X_{ocor}^T \cdot X_{ocor}$$`
+![](cooc.png)
+---
+## Reconhecimento de Entidade Mencionada (NER)
+## Matriz de Sentimentos
+### Score Sentimental do Contexto
+
+--
+
+O **sentimento da relação** entre dois personagens é dado num *contexto de co-ocorrência* entre eles, sendo o **score sentimental** atribuído a esse contexto de acordo com a presença de palavras positivas neutras ou negativas.
+
+--
+### Taxa de Alinhamento Sentimental
+
+As **descrições de emoções** diferentes de cada autor geram distorções em nossa rede de personagens. 
+
+--
+
+A **Taxa de Alinhamento Sentimental** (Sentiment Alignment Rate) reajusta o *score de sentimento* entre dois personagens toda vez que uma *co-ocorrência* for observada.
+
+---
+## Reconhecimento de Entidade Mencionada (NER)
+## Matriz de Sentimentos
+
+A **matriz de sentimentos** é calculada da seguinte forma:
+- `\(\theta_{align}\)` representa a taxa de alinhamento sentimental,
+- `\(V_{sentiment}\)` representa o vetor dos scores de sentimento,
+- `\(V^i_{sentiment}\)` representa o `\(i\)`-ésimo elemento do vetor de scores, e `\(N\)` seu número de elementos.
+
+--
+
+`$$\theta_{align} = -2 \times \frac{\sum V_{sentiment}^i} {N_{V_{sentiment}^i}}, V_{sentiment}^i \neq 0$$`
+
+`$$X_{sentiment} =  X_{ocor}^T \cdot ( X_{ocor}^T \times V_{sentiment})^T +  X_{coocor} \times \theta_{align}$$`
+---
+## Reconhecimento de Entidade Mencionada (NER)
+## Matriz de Sentimentos
+
+O processo é ilustrado abaixo:
+
+![](sent.png)
+---
+# Grafo em rede
+
+--
+
+Seja o *grafo não direcionado* `\(G(V,A)\)` definido como:
+
+--
+
+- O **conjunto dos vértices** de `\(G\)`, `\(V(G)\)`, formado através das **entidades mencionadas** no documento.
+
+--
+
+- O **conjunto das arestas** de `\(G\)`, `\(A(G)\)`, formado pelos **pares distintos não ordenados** de `\(V(G)\)`.
+
+--
+
+- Sejam `\(u,v\)` dois vértices distintos de `\(G\)`. A aresta `\(\{u,v\}\)` possui um **peso**, que denota ou o *Score Sentimental* ou o *Score de Co-ocorrência* entre `\(u\)` e `\(v\)`.
+--
+![](matrixtograph.png)
+---
+class: inverse, center, middle
+
+# **Parte 3**: dashboard interativo
 
 ---
 # Referências
 
+- Character Network &lt;https://github.com/hzjken/character-network&gt;
+
+- Network Graphs in Python &lt;https://plotly.com/python/network-graphs/&gt;
+
+- Uma Introdução Sucinta à Teoria dos Grafos &lt;https://www.ime.usp.br/~pf/teoriadosgrafos/texto/TeoriaDosGrafos.pdf&gt;
+
+- spaCy Models &lt;https://spacy.io/models&gt;
+
+- Network Diagrams &lt;https://www.data-to-viz.com/#network&gt;
+
+- Python network visualization app using NetworkX, Plotly, Dash &lt;https://github.com/jhwang1992/network-visualization&gt;
+
+- Tolkien, J. R. R. (1991). *The lord of the rings* 
+
 ---
 class: center, middle, inverse
+
 # Obrigado!
 
 #### Marcos, Luis e Francisco
 
 ---
+background-image: url("https://static2.srcdn.com/wordpress/wp-content/uploads/2019/05/Bilbo-and-Gandalf.jpg?q=50&amp;fit=crop&amp;w=740&amp;h=370")
+class: center, bottom, inverse
+
+### "The world is not in your books and maps. It is out there."
     </textarea>
 <style data-target="print-only">@media screen {.remark-slide-container{display:block;}.remark-slide-scaler{box-shadow:none;}}</style>
 <script src="https://remarkjs.com/downloads/remark-latest.min.js"></script>
