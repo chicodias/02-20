@@ -3,26 +3,33 @@ output:
   pdf_document: default
 ---
 # SCC0652 - Projeto Final
-## Visualização da rede de personagens na trilogia O Senhor dos Anéis utilizando o NER
+## Visualização da rede de personagens utilizando o NER
 
 ## Objetivo
-Nesta atividade, nosso objetivo é a criação de um sistema interativo de visualização analítica da rede de personagens dos livros O Senhor dos Anéis utilizando o modelo de Reconhecimento de Entidade Mencionada (NER).
+
+Nesta atividade, nosso objetivo é utilizar os conhecimentos adquiridos ao longo da disciplina SCC0652 para **gerar um dashboard de visualização interativa** para nosso *corpus* textual utilizando o modelo de Reconhecimento de Entidade Mencionada (NER).
 
 ## Conjunto de Dados
 
-Os livros foram retirados do site: https://www.kaggle.com/ashishsinhaiitr/lord-of-the-rings-text. Nosso *corpus* consiste em três arquivos `.txt`, cada um contendo um volume da trilogia *The Lord of the Rings*.
+Os livros foram retirados do site: https://www.kaggle.com/ashishsinhaiitr/lord-of-the-rings-text. Nosso *corpus*, ou coleção de documentos, consiste em três arquivos `.txt`, cada um contendo um volume da trilogia *The Lord of the Rings*.
 
-Na primeira etapa deste projeto, realizamos um pré-processamento, de forma a remover pontuação, stopwords, e lematizar nosso dataset. Esse processo foi ilustrado com o auxílio de wordclouds.
+Cada um dos documentos pertencente a essa coleção terá seu conteúdo carregado na memória e, na primeira etapa deste projeto, realizamos um pré-processamento, de forma a remover pontuação, stopwords, e lematizar nosso dataset. Esse processo foi ilustrado com o auxílio de wordclouds.
 
-As wordclouds serviram como elemento inicial de análise e deram embasamento para a segunda parte de nosso trabalho, onde procuramos adotar um paradigma visual em nosso conjunto pré-processado de dados. Ao decorrer do processo, notamos que era necessário adotar outros passos em nosso pré-processamento, removendo não só as stopwords, e sim todasas palavras mais comuns da língua inglesa, contribuindo com a acurácia do nosso modelo de Entidade Mencionada.
+![](wordcloud.png)
 
-Ao final do processo, no lugar de um corpus textual, nosso conjunto de dados tornaram-se grafos, em que cada um dos vértices era um personagem, e as arestas a respectiva análise, de co-ocorrência ou sentimento, das relações em cada um dos livros. Com auxílio do catálogo data-to-viz, decidimos adotar o modelo de representação visual de grafos em rede.
+As wordclouds serviram como elemento inicial de análise e deram embasamento para a segunda parte de nosso trabalho. Ao decorrer do processo, notamos que era necessário adotar outros passos em nosso pré-processamento, removendo não só as stopwords, e sim todas as palavras mais comuns da língua inglesa, contribuindo com a acurácia do nosso modelo de Entidade Mencionada.
+
+![](prep.jpeg)
 
 ## O Modelo de Reconhecimento de Entidade Mencionada (NER)
+
+![](ner.png)
 
 Sem nenhum conhecimento prévio dos romances, o **modelo de reconhecimento de entidade mencionada** (Named-entity recognition ou NER) encontrará os personagens que fazem parte deles. Neste projeto, utilizamos o classificador pré treinado **Spacy NER**. Por conta do alto poder de processamento exigido por este módulo, processaremos as frases uma por vez, ao invés de todo o livro em uma tacada só.
 
 Para cada frase, identificamos as entidades nela mencionadas e fazemos alguns processamentos. Um deles é dividir o nome em palavras únicas, se este for constituído por mais de uma palavra. Assim, "Bilbo" e "Bilbo Baggins" referirão-se a mesma entidade, de forma a contabilizar a ocorrência de um personagem na frase de forma mais apurada.
+
+![](ner2.png)
 
 Após todas as palavras únicas de nome terem sido criadas, filtramos os nomes que aparecem na lista de palavras comuns, pois algumas delas podem vir a ser contadas como entidades equivocadamente. E então, agregamos os nomes de cada frase, e filtramos os nomes cujo número de ocorrência seja menor que um certo limiar definido, a fim de evitar enganos de reconhecimento raros.
 
@@ -42,7 +49,7 @@ Assim, a matrix de co-ocorrência é igual ao produto cruzado entre a matriz de 
 
 $$ X_{coocor} = X_{ocor}^T \cdot X_{ocor} $$
 
-matrizes
+![](cooc.png)
 
 ## Matriz de Sentimentos
 
@@ -74,14 +81,19 @@ $$ \theta_{align} = -2 \times \frac{\sum V_{sentiment}^i} {N_{V_{sentiment}^i}},
 
 $$ X_{sentiment} =  X_{ocor}^T \cdot ( X_{ocor}^T \times V_{sentiment})^T +  X_{coocor} \times \theta_{align} $$
 
+![](sent.png)
+
 #### Grafos de Co-Ocorrência e de Sentimento
+
 Agora que temos as duas matrizes, podemos transformá-las nos parametros de um grafo e plotá-las. Para isso, primeiro **normalizamos** as matrizes para tornar a magnitude constante entre os diferentes livros, todavia mantendo a diversidade de personagens de um volume.
 
 Em nosso **grafo de sentimento** da trilogia, cada **vértice** representa um personagem do romance e cada **aresta** representa o relacionamento entre ele e algum outro personagem do conjunto. Ainda, o tamanho de cada vértice corresponde a frequência de ocorrência do respectivo personagem.
 
 Em relação a coloração dos arestas, que vai de claro (amarelo) a escuro (roxo), ela representa o **sentimento da relação** entre os dois personagens de forma mais humanamente compreensível: relação *hostil* ou *amigável*. Quanto mais *claro* um arco, mais *amigável* é aquela relação; quanto mais *escura* a cor, mais *hostil* é aquele relacionamento.
 
-As funções `matrix_to_edge_list` e `plot_graph` apenas servem para deixar o plot mais alinhado passando os parâmetros adequados.
+![](matrixtograph.png)
+
+## Plot interativo
 
 ## Conclusão
 
@@ -93,4 +105,19 @@ Esse método tornou possível uma análise de redes complexas entre personagens 
 
 Como sugestão para próximos trabalhos, além do processamento paralelo poderíamos adotar um Modelo de Entidade que abrangesse também apelidos dos personagens (por exemplo, grey e Gandalf, strider e Aragorn são a mesma pessoa). Inclusive, um dos datasets utilizado no Trabalho 1 poderia contribuir incrivelmente para isso. Dessa forma, poderiam surgir outras relações não evidenciadas em nossos grafos.
 
-## 
+## Referências
+
+- Character Network <https://github.com/hzjken/character-network>
+
+- Network Graphs in Python <https://plotly.com/python/network-graphs/>
+
+- Uma Introdução Sucinta à Teoria dos Grafos <https://www.ime.usp.br/~pf/teoriadosgrafos/texto/TeoriaDosGrafos.pdf>
+
+- spaCy Models <https://spacy.io/models>
+
+- Network Diagrams <https://www.data-to-viz.com/#network>
+
+- Python network visualization app using NetworkX, Plotly, Dash <https://github.com/jhwang1992/network-visualization>
+
+- Tolkien, J. R. R. (1991). *The lord of the rings* 
+ 

@@ -22,20 +22,31 @@ class: center, bottom, inverse
 
 ---
 
-## Objetivo
-
-Nesta atividade, nosso objetivo foi utilizar os conhecimentos adquiridos ao longo da disciplina SCC0652 para **gerar um dashboard de visualização interativa** para nosso *corpus* textual.
-
---
-
 ## Conjunto de dados
-
 Nosso *corpus* consiste em três arquivos `.txt` retirados da plataforma *Kaggle*, cada um contendo o texto de um volume da trilogia *The Lord of the Rings*.
 
 --
 
-## Implementação
+## Motivacão
+- Modelar dados textuais usando informacões presentes na trama.
+--
+- Utilizar modelos não supervisionados de aprendizagem num conjunto de dados já conhecido por nós como uma maneira de validar os resultados.
 
+--
+
+## Desafios de Análise
+- Alta dimensionalidade de um corpus textual.
+--
+- Necessidade de um alto grau de refinamento para a modelagem utilizada, não vista na disciplina.
+
+---
+
+## Objetivo
+Nesta atividade, nosso objetivo foi utilizar os conhecimentos adquiridos ao longo da disciplina SCC0652 para **gerar um dashboard de visualização interativa** para nosso *corpus* textual.
+
+--
+
+## Implementação
 Utilizamos as funcionalidades do **Jupyter Notebook** para implementar, em linguagem **Python**, nossa aplicação.
 
 ---
@@ -73,7 +84,7 @@ class: inverse, center, middle
 - Cada documento pertencente a essa coleção terá seu conteúdo carregado na memória,
 
 - Por questão de limitação de processamento, enviaremos uma frase por vez ao classificador, ao invés do livro completo de uma só vez.
-
+ 
 
 
 ---
